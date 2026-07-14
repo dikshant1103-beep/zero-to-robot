@@ -3,11 +3,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const LINKS = [
-  { href: "/", label: "Overview" },
-  { href: "/roadmap", label: "Roadmap" },
-  { href: "/courses", label: "Courses" },
-  { href: "/books", label: "Books" },
-  { href: "/log", label: "Build Log" },
+  { href: "/", label: "STATUS" },
+  { href: "/roadmap", label: "GATES" },
+  { href: "/courses", label: "TRAINING" },
+  { href: "/books", label: "TOMES" },
+  { href: "/log", label: "RAID LOG" },
 ];
 
 export default function Nav() {
@@ -16,7 +16,7 @@ export default function Nav() {
     <header className="topbar">
       <div className="topbar-inner">
         <Link href="/" className="brand">
-          ZERO <span className="arrow">→</span> ROBOT
+          ⟨ SYSTEM ⟩ <span className="dim">ZERO→ROBOT</span>
         </Link>
         <nav className="navlinks">
           {LINKS.map((l) => (

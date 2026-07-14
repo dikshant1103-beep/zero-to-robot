@@ -1,95 +1,151 @@
 import Link from "next/link";
 import roadmap from "@/data/roadmap.json";
 import log from "@/data/log.json";
-import { getStats } from "@/lib/stats";
-import { Bar } from "@/components/ui";
+import { getSystem } from "@/lib/xp";
+import { Bar, Window, SysAlert } from "@/components/ui";
 
 export default function Home() {
-  const s = getStats();
+  const s = getSystem();
   const phase = s.activePhase;
-  const nextMs = phase.milestones.filter((m) => !m.done).slice(0, 3);
+  const dailyQuests = phase.milestones.filter((m) => !m.done).slice(0, 4);
   const latest = log.entries[0];
 
   return (
     <>
       <section className="hero">
+        <div className="sys-tag">⟨ SYSTEM ⟩</div>
         <h1>
           ZERO <span className="arrow">→</span> ROBOT
         </h1>
         <div className="tagline">
-          {roadmap.commitment} · started {roadmap.start} · 6 phases · ~15 months
+          {roadmap.commitment.toUpperCase()} · AWAKENED {roadmap.start} · 6 GATES · ~15 MONTHS
         </div>
-        <p className="mission">{roadmap.mission}</p>
       </section>
 
-      <div className="grid tiles">
-        <div className="card tile">
-          <div className="k">Overall progress</div>
-          <div className="v">{s.overall}%</div>
-          <div className="s">
-            {s.milestones.done}/{s.milestones.total} milestones
+      <SysAlert>
+        <span className="sys">[NOTIFICATION]</span> You have acquired the
+        qualifications to be a <b>Player</b>. The System will now track your
+        growth into an engineer who can{" "}
+        <b>design a robot from scratch, train it, and deploy it</b> — humanoid
+        in simulation, drone in the field. Progress cannot be faked:
+        every level comes from a git push.
+      </SysAlert>
+
+      <Window title="Status">
+        <div className="player">
+          <div className="level-block">
+            <div className="lv-label">LEVEL</div>
+            <div className="lv display">{s.level}</div>
+            <div className="rank-emblem">
+              HUNTER RANK{" "}
+              <b style={{ color: `var(--rank-${s.rank.toLowerCase()})`, textShadow: "0 0 12px currentColor" }}>
+                {s.rank}
+              </b>
+            </div>
           </div>
-          <div style={{ marginTop: 10 }}>
-            <Bar value={s.overall} thick />
+          <div>
+            <div className="p-rows">
+              <div className="p-row">
+                <span className="k">NAME</span>
+                <span className="v">DIKSHANT</span>
+              </div>
+              <div className="p-row">
+                <span className="k">JOB</span>
+                <span className="v">
+                  Mechanical Design Engineer{" "}
+                  <span className="fade">→ Full-Stack Robotics Engineer</span>
+                </span>
+              </div>
+              <div className="p-row">
+                <span className="k">TITLE</span>
+                <span className="v">「 {s.title} 」</span>
+              </div>
+            </div>
+            <div className="xp-wrap">
+              <div className="xp-nums">
+                <span>
+                  XP <b>{s.xp.toLocaleString()}</b>
+                </span>
+                <span>
+                  NEXT LEVEL {s.intoLevel}/{s.xpPerLevel}
+                </span>
+              </div>
+              <Bar value={(s.intoLevel / s.xpPerLevel) * 100} />
+            </div>
+            <div className="stats">
+              {s.stats.map((st) => (
+                <div className="stat" key={st.key}>
+                  <div className="k">{st.key}</div>
+                  <div className="v">{st.value}</div>
+                  <div className="s">{st.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-        <div className="card tile">
-          <div className="k">Current phase</div>
-          <div className="v">{phase.id}</div>
-          <div className="s">{phase.name}</div>
-        </div>
-        <div className="card tile">
-          <div className="k">Courses</div>
-          <div className="v">
-            {s.courses.done}/{s.courses.total}
-          </div>
-          <div className="s">avg {s.courses.avg}% watched</div>
-        </div>
-        <div className="card tile">
-          <div className="k">Core books</div>
-          <div className="v">
-            {s.books.read}
-            <span style={{ fontSize: 18, color: "var(--muted)" }}>
-              /{s.books.total}
-            </span>
-          </div>
-          <div className="s">chapters across {s.books.core} books</div>
-        </div>
-      </div>
+      </Window>
 
       <div className="home-grid">
-        <div className="card focus-card">
-          <div className="k">Now — Phase {phase.id}</div>
-          <h3>{phase.name}</h3>
-          <p>{phase.goal}</p>
-          <ul className="mini-list">
-            {nextMs.map((m, i) => (
+        <Window title="Quest Info">
+          <div
+            style={{
+              fontSize: 14,
+              color: "var(--ink-2)",
+              marginBottom: 14,
+              letterSpacing: "0.04em",
+            }}
+          >
+            [Daily Quest: <b style={{ color: "var(--ink)" }}>Gate {phase.id} — {phase.name}</b>]
+          </div>
+          <ul className="quest-list">
+            {dailyQuests.map((m, i) => (
               <li key={i}>
-                <span>▸ {m.text}</span>
+                <span className="diamond" />
+                <span className="qtext">{m.text}</span>
               </li>
             ))}
           </ul>
+          <div className="quest-warning">
+            ⚠ WARNING: Failure to complete the daily quest will result in an
+            appropriate penalty (staying a mech engineer forever).
+          </div>
           <Link href="/roadmap" className="more">
-            Full roadmap →
+            OPEN GATE MAP →
           </Link>
-        </div>
-        <div className="card">
-          <h2>Latest from the build log</h2>
-          <ul className="mini-list">
-            <li>
-              <b>{latest.title}</b>
-            </li>
-            <li>
-              <span style={{ color: "var(--muted)" }}>{latest.date}</span>
-            </li>
-            <li>
-              <span>{latest.body.slice(0, 180)}…</span>
-            </li>
-          </ul>
+        </Window>
+
+        <Window title="Raid Log — Latest">
+          <div className="log-entry" style={{ marginBottom: 0 }}>
+            <div className="date">
+              {latest.date} · GATE {latest.phase}
+            </div>
+            <h3>{latest.title}</h3>
+            <p>{latest.body.slice(0, 210)}…</p>
+          </div>
+          <div className="mini-stats" style={{ marginTop: 18 }}>
+            <div className="mini-stat">
+              <div className="v">
+                {s.milestones.done}/{s.milestones.total}
+              </div>
+              <div className="k">Quests</div>
+            </div>
+            <div className="mini-stat">
+              <div className="v">
+                {s.courses.done}/{s.courses.total}
+              </div>
+              <div className="k">Skills</div>
+            </div>
+            <div className="mini-stat">
+              <div className="v">
+                {s.books.read}/{s.books.total}
+              </div>
+              <div className="k">Tome ch.</div>
+            </div>
+          </div>
           <Link href="/log" className="more">
-            Read the log →
+            FULL RAID LOG →
           </Link>
-        </div>
+        </Window>
       </div>
     </>
   );

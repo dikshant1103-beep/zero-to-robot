@@ -1,18 +1,22 @@
 import courses from "@/data/courses.json";
-import { Bar, AreaChip, PlatformBadge } from "@/components/ui";
+import { Bar, AreaChip, PlatformBadge, Window } from "@/components/ui";
 
-export const metadata = { title: "Courses · Zero → Robot" };
+export const metadata = { title: "TRAINING · Zero → Robot" };
 
 const PHASES = [1, 2, 3, 4];
 
-export default function Courses() {
+export default function Training() {
   return (
     <>
       <div className="page-head">
-        <h1>Courses hub</h1>
+        <h1>
+          SKILL <span className="accent">TRAINING</span>
+        </h1>
         <p>
-          Udemy (subscription) + NPTEL + the best free material, ordered by phase.{" "}
-          {courses.note}
+          Every skill grants XP as mastery rises — Udemy (subscription) + NPTEL
+          + the best free material, grouped by the gate that needs them. Udemy
+          links are search links; after enrolling, swap in your exact course URL
+          so one click opens the player.
         </p>
       </div>
       {PHASES.map((ph) => {
@@ -20,8 +24,10 @@ export default function Courses() {
         if (list.length === 0) return null;
         return (
           <section key={ph}>
-            <div className="section-label">Phase {ph}</div>
-            <div className="card" style={{ paddingTop: 4, paddingBottom: 4 }}>
+            <div className="section-label">
+              REQUIRED FOR <b>GATE {String(ph).padStart(2, "0")}</b>
+            </div>
+            <Window style={{ paddingTop: 8, paddingBottom: 8 }}>
               {list.map((c) => (
                 <div className="row" key={c.title}>
                   <div>
@@ -31,7 +37,7 @@ export default function Courses() {
                       </a>
                     </div>
                     <div className="sub">
-                      {c.instructor} · ~{c.hours} hrs
+                      {c.instructor} · ~{c.hours} hrs · +{c.hours * 10} XP at mastery
                     </div>
                   </div>
                   <div className="meta">
@@ -39,12 +45,12 @@ export default function Courses() {
                     <PlatformBadge platform={c.platform} />
                   </div>
                   <div className="barwrap">
-                    <Bar value={c.progress} />
+                    <Bar value={c.progress} slim />
                     <span className="pct">{c.progress}%</span>
                   </div>
                 </div>
               ))}
-            </div>
+            </Window>
           </section>
         );
       })}
