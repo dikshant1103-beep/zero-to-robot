@@ -1,0 +1,192 @@
+{
+  "note": "Udemy links are search links — after enrolling, replace `url` with your exact course URL so one click opens your player.",
+  "courses": [
+    {
+      "title": "Beginning C++ Programming — From Beginner to Beyond",
+      "instructor": "Frank J. Mitropoulos",
+      "platform": "udemy",
+      "area": "CS",
+      "phase": 1,
+      "hours": 46,
+      "url": "https://www.udemy.com/courses/search/?q=beginning%20c%2B%2B%20programming%20from%20beginner%20to%20beyond",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "ROS 2 for Beginners (ROS Jazzy/Humble)",
+      "instructor": "Edouard Renard",
+      "platform": "udemy",
+      "area": "Robotics",
+      "phase": 1,
+      "hours": 12,
+      "url": "https://www.udemy.com/courses/search/?q=ros2%20for%20beginners%20edouard%20renard",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "Crash Course Electronics and PCB Design",
+      "instructor": "André LaMothe",
+      "platform": "udemy",
+      "area": "Electronics",
+      "phase": 1,
+      "hours": 110,
+      "url": "https://www.udemy.com/courses/search/?q=crash%20course%20electronics%20and%20pcb%20design",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "Robotics: Basics and Advanced Concepts (IISc)",
+      "instructor": "Prof. Ashitava Ghosal — NPTEL",
+      "platform": "nptel",
+      "area": "Robotics",
+      "phase": 1,
+      "hours": 30,
+      "url": "https://www.youtube.com/results?search_query=NPTEL+robotics+basics+and+advanced+concepts+ghosal",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "Control Engineering (IIT Madras)",
+      "instructor": "Prof. Ramkrishna Pasumarthy — NPTEL",
+      "platform": "nptel",
+      "area": "Control",
+      "phase": 1,
+      "hours": 30,
+      "url": "https://www.youtube.com/results?search_query=NPTEL+control+engineering+pasumarthy",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "ROS 2 Level 2 — TF, URDF, RViz, Gazebo",
+      "instructor": "Edouard Renard",
+      "platform": "udemy",
+      "area": "Robotics",
+      "phase": 2,
+      "hours": 8,
+      "url": "https://www.udemy.com/courses/search/?q=ros2%20tf%20urdf%20rviz%20gazebo%20renard",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "Mastering Microcontroller and Embedded Driver Development (STM32)",
+      "instructor": "FastBit Embedded Brain Academy",
+      "platform": "udemy",
+      "area": "Embedded",
+      "phase": 2,
+      "hours": 45,
+      "url": "https://www.udemy.com/courses/search/?q=mastering%20microcontroller%20embedded%20driver%20development",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "KiCad Like a Pro",
+      "instructor": "Peter Dalmaris (Tech Explorations)",
+      "platform": "udemy",
+      "area": "Electronics",
+      "phase": 2,
+      "hours": 25,
+      "url": "https://www.udemy.com/courses/search/?q=kicad%20like%20a%20pro",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "Introduction to Embedded System Design (IIT Delhi)",
+      "instructor": "Prof. Dhananjay Gadre — NPTEL",
+      "platform": "nptel",
+      "area": "Embedded",
+      "phase": 2,
+      "hours": 30,
+      "url": "https://www.youtube.com/results?search_query=NPTEL+introduction+to+embedded+system+design+IIT+Delhi",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "MuJoCo Documentation + Tutorials (official)",
+      "instructor": "Google DeepMind",
+      "platform": "free",
+      "area": "Humanoid",
+      "phase": 2,
+      "hours": 15,
+      "url": "https://mujoco.readthedocs.io/en/stable/overview.html",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "PyTorch for Deep Learning Bootcamp",
+      "instructor": "Daniel Bourke",
+      "platform": "udemy",
+      "area": "ML",
+      "phase": 3,
+      "hours": 52,
+      "url": "https://www.udemy.com/courses/search/?q=pytorch%20for%20deep%20learning%20bootcamp%20bourke",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "Neural Networks: Zero to Hero",
+      "instructor": "Andrej Karpathy",
+      "platform": "free",
+      "area": "ML",
+      "phase": 3,
+      "hours": 16,
+      "url": "https://karpathy.ai/zero-to-hero.html",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "Artificial Intelligence: Reinforcement Learning in Python",
+      "instructor": "Lazy Programmer",
+      "platform": "udemy",
+      "area": "ML",
+      "phase": 3,
+      "hours": 15,
+      "url": "https://www.udemy.com/courses/search/?q=artificial%20intelligence%20reinforcement%20learning%20in%20python",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "Deep Learning (IIT Madras)",
+      "instructor": "Prof. Mitesh Khapra — NPTEL",
+      "platform": "nptel",
+      "area": "ML",
+      "phase": 3,
+      "hours": 40,
+      "url": "https://www.youtube.com/results?search_query=NPTEL+deep+learning+mitesh+khapra",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "Underactuated Robotics — MIT 6.832 Lectures",
+      "instructor": "Russ Tedrake",
+      "platform": "free",
+      "area": "Humanoid",
+      "phase": 3,
+      "hours": 40,
+      "url": "https://underactuated.mit.edu",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "Drone Programming with PX4, MAVSDK & Python",
+      "instructor": "(pick best current match)",
+      "platform": "udemy",
+      "area": "Drone",
+      "phase": 4,
+      "hours": 12,
+      "url": "https://www.udemy.com/courses/search/?q=px4%20drone%20programming%20mavsdk",
+      "progress": 0,
+      "status": "not-started"
+    },
+    {
+      "title": "Building a Mobile Robot with ROS 2 (free video series)",
+      "instructor": "Articulated Robotics (Josh Newans)",
+      "platform": "free",
+      "area": "Robotics",
+      "phase": 4,
+      "hours": 20,
+      "url": "https://articulatedrobotics.xyz/tutorials/",
+      "progress": 0,
+      "status": "not-started"
+    }
+  ]
+}

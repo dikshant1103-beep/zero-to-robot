@@ -1,0 +1,11 @@
+{
+  "entries": [
+    {
+      "date": "2026-07-14",
+      "title": "Day 0 — Command center is live",
+      "phase": 0,
+      "body": "The plan exists and it's public. Mission: design a robot from scratch, train it, deploy it — full-stack (mech + EE + electronics + CS + ML). Two robots share one curriculum: the drone becomes the first physical build (₹50k budget over 6–12 months, building on my PX4/Gazebo experience), the humanoid lives in MuJoCo until a mini-biped arrives for sim2real. 20–30 hrs/week, ~15 months, 6 phases. Dashboard deployed on Vercel with auto-deploy from GitHub — every push updates this page.",
+      "links": []
+    }
+  ]
+}

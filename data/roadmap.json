@@ -1,0 +1,93 @@
+{
+  "start": "2026-07-14",
+  "commitment": "20–30 hrs/week",
+  "mission": "Become an engineer who can design a robot from scratch, train it, and deploy it — mechanical, electrical, electronics, CS, and ML in one head. Two robots, one curriculum: the drone is the first physical build, the humanoid lives in simulation until the mini-biped arrives.",
+  "phases": [
+    {
+      "id": 0,
+      "name": "Command Center",
+      "window": "Jul 2026 · Week 1",
+      "status": "active",
+      "goal": "Dashboard live on Vercel, dev environment ready, plan locked.",
+      "milestones": [
+        { "text": "Dashboard built and deployed (GitHub → Vercel auto-deploy)", "done": true },
+        { "text": "Ubuntu dev environment: ROS 2, MuJoCo, PyTorch, PX4 SITL verified", "done": false },
+        { "text": "Book PDFs collected (5 core books are free — links on the Books shelf)", "done": false },
+        { "text": "Udemy Phase-1 courses enrolled and linked on Courses hub", "done": false }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Foundations",
+      "window": "Jul – Oct 2026",
+      "status": "upcoming",
+      "goal": "The languages and physics every later phase stands on: C++, ROS 2, rigid-body kinematics, circuits, control refresh.",
+      "milestones": [
+        { "text": "C++ to intermediate level (classes, RAII, templates, CMake)", "done": false },
+        { "text": "ROS 2 basics: nodes, topics, services, custom messages, launch files", "done": false },
+        { "text": "Modern Robotics ch. 2–6: configuration space → forward/inverse kinematics", "done": false },
+        { "text": "Electronics bench basics: read schematics, breadboard, multimeter, ESP32 blinky → motor PWM", "done": false },
+        { "text": "Control refresh: transfer functions, PID, root locus, Bode (Åström & Murray)", "done": false },
+        { "text": "DELIVERABLE — ROS 2 package that drives a simulated 2-link arm with your own FK/IK", "done": false }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Simulation & Embedded Core",
+      "window": "Oct 2026 – Jan 2027",
+      "status": "upcoming",
+      "goal": "Both robots alive in simulation + real firmware on real silicon. New PC lands mid-phase.",
+      "milestones": [
+        { "text": "MuJoCo humanoid: load a humanoid model, PD joint control, standing balance controller", "done": false },
+        { "text": "PX4 SITL beyond drone_inspector: offboard mode, custom flight modes, mission scripting", "done": false },
+        { "text": "State estimation: Kalman filter → EKF, implement attitude estimator from raw IMU data", "done": false },
+        { "text": "Embedded: STM32 bare-metal (GPIO, timers, PWM, I2C/SPI drivers) — FastBit course", "done": false },
+        { "text": "First PCB: design + order a simple sensor breakout in KiCad", "done": false },
+        { "text": "DELIVERABLE — humanoid stands under pushes in MuJoCo + drone flies scripted survey in SITL", "done": false }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Machine Learning + RL",
+      "window": "Jan – Apr 2027",
+      "status": "upcoming",
+      "goal": "Train the robots. Deep learning properly, then RL, then a walking policy. Drone parts ordering begins (₹50k budget unlocks).",
+      "milestones": [
+        { "text": "PyTorch fluency: training loops, CNNs, deployment (ONNX) — Bourke course + Karpathy Zero-to-Hero", "done": false },
+        { "text": "RL fundamentals: Sutton & Barto pt. 1, implement DQN + PPO from scratch on Gym tasks", "done": false },
+        { "text": "Humanoid locomotion: PPO walking policy in MuJoCo (CPU-trainable; new PC accelerates it)", "done": false },
+        { "text": "Drone perception: vision-guided precision landing on a marker in SITL", "done": false },
+        { "text": "Order drone hardware: frame, Pixhawk 6C, motors/ESCs, Pi 5 companion, camera (~₹40k)", "done": false },
+        { "text": "DELIVERABLE — humanoid walking video + drone vision-landing in sim, both on the build log", "done": false }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Drone: Build & Deploy",
+      "window": "Apr – Jul 2027",
+      "status": "upcoming",
+      "goal": "The first physical robot: assemble, wire, tune, then fly an autonomous vision mission outdoors (DGCA rules: sub-2kg, registered, open category).",
+      "milestones": [
+        { "text": "Assemble + wire the quad: soldering, power distribution, ESC calibration", "done": false },
+        { "text": "Bench bring-up: sensor calibration, PID tuning, first manual hover", "done": false },
+        { "text": "Companion computer: Pi 5 + camera running your perception stack, MAVLink offboard", "done": false },
+        { "text": "Autonomous mission: takeoff → waypoint survey → vision-guided precision landing, no pilot input", "done": false },
+        { "text": "DELIVERABLE — full flight demo video + build writeup: your CAD, your wiring, your code, your trained model", "done": false }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Humanoid: Sim2Real",
+      "window": "Jul – Oct 2027",
+      "status": "upcoming",
+      "goal": "Close the loop on the second robot: transfer the walking policy from MuJoCo to a real mini-biped (budget round 2).",
+      "milestones": [
+        { "text": "Choose + acquire platform: mini-biped / small humanoid (serial-bus servos, ~13–17 DOF)", "done": false },
+        { "text": "System ID: match sim model to real hardware (masses, friction, servo response)", "done": false },
+        { "text": "Domain randomization retrain: policy robust to sim-real gap", "done": false },
+        { "text": "Deploy: policy running onboard, robot walks untethered", "done": false },
+        { "text": "DELIVERABLE — walking robot video + full 15-month retrospective post", "done": false }
+      ]
+    }
+  ]
+}
