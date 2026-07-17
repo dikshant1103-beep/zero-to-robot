@@ -4,3 +4,8 @@ out/
 .vercel
 .env*
 *.log
+
+# integration agent skills (local tooling)
+.agents/
+.claude/
+skills-lock.json
