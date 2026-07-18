@@ -9,6 +9,7 @@ const PUBLIC_LINKS = [
   { href: "/courses", label: "TRAINING" },
   { href: "/books", label: "TOMES" },
   { href: "/log", label: "RAID LOG" },
+  { href: "/leaderboard", label: "RANKINGS" },
 ];
 
 const ME_LINKS = [
@@ -17,6 +18,7 @@ const ME_LINKS = [
   { href: "/me/courses", label: "TRAINING" },
   { href: "/me/books", label: "TOMES" },
   { href: "/me/log", label: "RAID LOG" },
+  { href: "/leaderboard", label: "RANKINGS" },
 ];
 
 export default function Nav() {

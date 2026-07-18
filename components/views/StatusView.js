@@ -1,7 +1,21 @@
 import Link from "next/link";
 import { Bar, Window, SysAlert } from "@/components/ui";
+import DailyQuest from "@/components/DailyQuest";
+import StatAllocator from "@/components/StatAllocator";
+import ShadowArmy from "@/components/ShadowArmy";
+import LeaderboardOptIn from "@/components/LeaderboardOptIn";
 
-export default function StatusView({ system: s, log, player, tagline, notification, base = "" }) {
+export default function StatusView({
+  system: s,
+  log,
+  player,
+  tagline,
+  notification,
+  base = "",
+  daily = null,
+  shadows = [],
+  editable = false,
+}) {
   const phase = s.activePhase;
   const dailyQuests = phase ? phase.milestones.filter((m) => !m.done).slice(0, 4) : [];
   const latest = log.entries[0];
@@ -17,6 +31,8 @@ export default function StatusView({ system: s, log, player, tagline, notificati
       </section>
 
       <SysAlert>{notification}</SysAlert>
+
+      {daily && <DailyQuest daily={daily} />}
 
       <Window title="Status">
         <div className="player">
@@ -56,21 +72,13 @@ export default function StatusView({ system: s, log, player, tagline, notificati
               </div>
               <Bar value={(s.intoLevel / s.xpPerLevel) * 100} />
             </div>
-            <div className="stats">
-              {s.stats.map((st) => (
-                <div className="stat" key={st.key}>
-                  <div className="k">{st.key}</div>
-                  <div className="v">{st.value}</div>
-                  <div className="s">{st.label}</div>
-                </div>
-              ))}
-            </div>
+            <StatAllocator stats={s.stats} points={s.points} editable={editable} />
           </div>
         </div>
       </Window>
 
       <div className="home-grid">
-        <Window title="Quest Info">
+        <Window title="Active Gate">
           <div
             style={{
               fontSize: 14,
@@ -79,7 +87,7 @@ export default function StatusView({ system: s, log, player, tagline, notificati
               letterSpacing: "0.04em",
             }}
           >
-            [Daily Quest:{" "}
+            [Current objective:{" "}
             <b style={{ color: "var(--ink)" }}>
               Gate {phase ? `${phase.id ?? phase.position} — ${phase.name}` : "—"}
             </b>
@@ -145,6 +153,17 @@ export default function StatusView({ system: s, log, player, tagline, notificati
           </Link>
         </Window>
       </div>
+
+      <ShadowArmy shadows={shadows} editable={editable} />
+
+      {editable && (
+        <Window title="Hunter Association">
+          <LeaderboardOptIn
+            onLeaderboard={player.onLeaderboard}
+            publicName={player.publicName}
+          />
+        </Window>
+      )}
     </>
   );
 }

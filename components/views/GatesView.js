@@ -11,6 +11,7 @@ import {
   updatePhase,
   deletePhase,
 } from "@/lib/actions";
+import { setMilestoneProof, extractShadow } from "@/lib/actions";
 
 const STATUS_LABEL = { active: "IN PROGRESS", done: "CLEARED", upcoming: "LOCKED" };
 
@@ -60,9 +61,31 @@ function Quest({ m, editable }) {
       <span className="qtext">
         {isBoss && <span className="boss-tag">BOSS</span>}
         {isBoss ? m.text.replace(/^DELIVERABLE\s*—\s*/, "") : m.text}
+        {m.proof && (
+          <a
+            className={`proof ${m.proofVerified ? "verified" : ""}`}
+            href={m.proof}
+            target="_blank"
+            rel="noreferrer"
+            title={m.proofVerified ? "Proof verified — link resolves" : "Proof attached (unverified)"}
+          >
+            {m.proofVerified ? "◆ VERIFIED" : "◇ PROOF"}
+          </a>
+        )}
       </span>
       {editable && (
         <span className="q-actions">
+          <button
+            className="icon-btn"
+            title="Attach proof of work (commit, PR, or repo URL)"
+            disabled={pending}
+            onClick={() => {
+              const url = prompt("Proof of work — paste a GitHub/GitLab URL:", m.proof || "");
+              if (url !== null) start(() => setMilestoneProof(m.dbId, url));
+            }}
+          >
+            ⚿
+          </button>
           <button className="icon-btn" title="Edit quest" onClick={() => setEditing(true)}>✎</button>
           <button
             className="icon-btn danger"
@@ -214,6 +237,22 @@ function AddGate() {
   );
 }
 
+// A fully cleared gate can be extracted into the Shadow Army — the permanent
+// record of what you actually built.
+function ExtractShadow({ phaseDbId, name }) {
+  const [pending, start] = useTransition();
+  return (
+    <button
+      className="sys-btn gold big"
+      disabled={pending}
+      title={`Extract "${name}" as a shadow`}
+      onClick={() => start(() => extractShadow(phaseDbId))}
+    >
+      ◆ ARISE — EXTRACT SHADOW
+    </button>
+  );
+}
+
 export default function GatesView({ phases, editable = false }) {
   const [editingGate, setEditingGate] = useState(null);
   return (
@@ -271,6 +310,9 @@ export default function GatesView({ phases, editable = false }) {
                       ))}
                     </ul>
                     {editable && <AddQuest phaseDbId={p.dbId} />}
+                    {editable && p.milestones.length > 0 && done === p.milestones.length && (
+                      <ExtractShadow phaseDbId={p.dbId} name={p.name} />
+                    )}
                     <div className="g-meta">
                       <Bar value={pct} slim gold={rank === "S"} />
                       <span className="n">

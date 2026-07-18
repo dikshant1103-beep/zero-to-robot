@@ -13,9 +13,14 @@ export default async function MyStatus() {
       log={d.log}
       base="/me"
       tagline={`PLAYER MODE · AWAKENED ${d.player.awakened} · ${d.roadmap.phases.length} GATES · YOURS TO CLEAR`}
+      daily={d.daily}
+      shadows={d.shadows}
+      editable
       player={{
         name: d.player.name.toUpperCase(),
         job: d.player.job,
+        onLeaderboard: d.player.onLeaderboard,
+        publicName: d.player.publicName,
       }}
       notification={
         <>

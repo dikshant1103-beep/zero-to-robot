@@ -27,9 +27,9 @@ export function PlatformBadge({ platform }) {
   return <span className={`badge ${platform}`}>{label}</span>;
 }
 
-export function Window({ title, children, style }) {
+export function Window({ title, children, style, className = "" }) {
   return (
-    <section className="window" style={style}>
+    <section className={`window ${className}`.trim()} style={style}>
       {title && <div className="w-head">{title}</div>}
       {children}
     </section>
