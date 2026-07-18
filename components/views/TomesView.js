@@ -4,13 +4,31 @@ import { Bar, AreaChip, Window } from "@/components/ui";
 import Link from "next/link";
 import { AREA_COLORS } from "@/lib/meta";
 import { bookSlug, librarySource } from "@/lib/library";
-import { setChaptersRead, addBook, updateBook, deleteBook } from "@/lib/actions";
+import { setChaptersRead, addBook, updateBook, deleteBook, setBookOwned } from "@/lib/actions";
 
 const AREAS = Object.keys(AREA_COLORS);
 
 // READ/DOWNLOAD for tomes the authors publish free; buy/borrow for the rest.
-function BookLinks({ b }) {
+// `local` holds slugs of PDFs you own in books/local/ — dev only, always empty
+// in a deploy, and they take priority over the public source.
+function BookLinks({ b, local = [] }) {
+  const slug = bookSlug(b.title);
   const src = librarySource(b.title);
+
+  if (local.includes(slug)) {
+    return (
+      <>
+        <Link className="sys-btn tiny" href={`/read/${slug}`}>
+          READ
+        </Link>
+        <a className="sys-btn ghost tiny" href={`/api/local-book/${slug}`} download>
+          DOWNLOAD
+        </a>
+        <span className="own-tag">MY COPY</span>
+      </>
+    );
+  }
+
   if (!src) {
     return b.free ? (
       <a className="sys-btn ghost tiny" href={b.free} target="_blank" rel="noreferrer">
@@ -21,7 +39,7 @@ function BookLinks({ b }) {
   if (src.url) {
     return (
       <>
-        <Link className="sys-btn tiny" href={`/read/${bookSlug(b.title)}`}>
+        <Link className="sys-btn tiny" href={`/read/${slug}`}>
           READ
         </Link>
         <a
@@ -38,13 +56,46 @@ function BookLinks({ b }) {
   }
   return (
     <>
-      <a className="sys-btn ghost tiny" href={src.buy} target="_blank" rel="noreferrer">
-        BUY ↗
+      <a className="sys-btn gold tiny" href={src.buy} target="_blank" rel="noreferrer">
+        ACQUIRE ↗
       </a>
       <a className="sys-btn ghost tiny" href={src.borrow} target="_blank" rel="noreferrer">
-        BORROW ↗
+        BORROW FREE ↗
       </a>
     </>
+  );
+}
+
+// An owned tome is "bound": +25% XP on every chapter absorbed from it.
+function ArtifactState({ b, editable }) {
+  const [pending, start] = useTransition();
+  if (b.owned) {
+    return (
+      <span className="artifact bound">
+        ◆ BOUND · +25% XP
+        {editable && (
+          <button
+            className="unbind"
+            title="Mark as no longer owned"
+            disabled={pending}
+            onClick={() => start(() => setBookOwned(b.dbId, false))}
+          >
+            ✕
+          </button>
+        )}
+      </span>
+    );
+  }
+  if (!editable) return <span className="artifact">◇ UNBOUND</span>;
+  return (
+    <button
+      className="sys-btn ghost tiny"
+      disabled={pending}
+      title="Bind this tome — chapters from it pay +25% XP"
+      onClick={() => start(() => setBookOwned(b.dbId, true))}
+    >
+      I OWN THIS
+    </button>
   );
 }
 
@@ -98,7 +149,7 @@ function BookFields({ f, set }) {
   );
 }
 
-function BookRow({ b, editable }) {
+function BookRow({ b, editable, local }) {
   const [pending, start] = useTransition();
   const [editing, setEditing] = useState(false);
   const [f, setF] = useState(null);
@@ -155,7 +206,8 @@ function BookRow({ b, editable }) {
           {b.free ? " · FREE DROP" : ""} · +30 XP per chapter
         </div>
         <div className="book-links">
-          <BookLinks b={b} />
+          <BookLinks b={b} local={local} />
+          <ArtifactState b={b} editable={editable} />
         </div>
       </div>
       <div className="meta">
@@ -213,11 +265,11 @@ function BookRow({ b, editable }) {
   );
 }
 
-function Shelf({ list, editable }) {
+function Shelf({ list, editable, local }) {
   return (
     <Window style={{ paddingTop: 8, paddingBottom: 8 }}>
       {list.map((b) => (
-        <BookRow key={b.dbId ?? b.title} b={b} editable={editable} />
+        <BookRow key={b.dbId ?? b.title} b={b} editable={editable} local={local} />
       ))}
       {list.length === 0 && (
         <p style={{ color: "var(--muted)", padding: "14px 0" }}>Shelf is empty.</p>
@@ -261,7 +313,7 @@ function AddBook() {
   );
 }
 
-export default function TomesView({ books, editable = false }) {
+export default function TomesView({ books, editable = false, local = [] }) {
   const core = books.books.filter((b) => b.priority === "core");
   const ref = books.books.filter((b) => b.priority === "reference");
   return (
@@ -273,7 +325,10 @@ export default function TomesView({ books, editable = false }) {
         <p>
           Core tomes in reading order — absorb them chapter by chapter; each
           chapter grants XP toward the stat its discipline feeds.
-          {editable && " Hit + when you finish a chapter (+30 XP)."}
+          {editable && " Hit + when you finish a chapter (+30 XP)."} Tomes you own
+          are <b className="gold-text">BOUND</b> artifacts — their chapters pay
+          +25% XP. The free tomes come bound; the rest bind when you acquire a
+          legitimate copy.
         </p>
       </div>
       {editable && (
@@ -284,9 +339,9 @@ export default function TomesView({ books, editable = false }) {
       <div className="section-label">
         CORE TOMES — <b>ABSORB IN THIS ORDER</b>
       </div>
-      <Shelf list={core} editable={editable} />
+      <Shelf list={core} editable={editable} local={local} />
       <div className="section-label">REFERENCE SHELF — CONSULT, DON'T GRIND</div>
-      <Shelf list={ref} editable={editable} />
+      <Shelf list={ref} editable={editable} local={local} />
     </>
   );
 }

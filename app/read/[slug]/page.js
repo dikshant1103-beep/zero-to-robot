@@ -1,6 +1,20 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { findBySlug, readableSlugs } from "@/lib/library";
+import { findBySlug, readableSlugs, LIBRARY, bookSlug } from "@/lib/library";
+import { localFile } from "@/lib/local-books";
+
+// A book you own, sitting in books/local/ — dev only, never in a deploy.
+function resolveLocal(slug) {
+  if (!localFile(slug)) return null;
+  const title = Object.keys(LIBRARY).find((t) => bookSlug(t) === slug) || slug;
+  return {
+    title,
+    kind: "pdf",
+    url: `/api/local-book/${slug}`,
+    embeddable: true,
+    source: "Your own copy — books/local/, local machine only, never deployed",
+  };
+}
 
 export function generateStaticParams() {
   return readableSlugs().map((slug) => ({ slug }));
@@ -8,13 +22,14 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const book = findBySlug(slug);
+  const book = findBySlug(slug) || resolveLocal(slug);
   return { title: book ? `${book.title} — Tome Reader` : "Tome Reader" };
 }
 
 export default async function ReadPage({ params }) {
   const { slug } = await params;
-  const book = findBySlug(slug);
+  // Your own copy wins over the public source when both exist.
+  const book = resolveLocal(slug) || findBySlug(slug);
   if (!book) notFound();
 
   const embedSrc = book.embed || book.url;

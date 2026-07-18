@@ -9,7 +9,8 @@
       "free": "https://hades.mech.northwestern.edu/index.php/Modern_Robotics",
       "chaptersTotal": 13,
       "chaptersRead": 0,
-      "why": "THE spine of the whole plan. Screw-theory kinematics → dynamics → trajectory generation → control → wheeled robots. Free PDF + full video lecture series + Coursera exercises. Everything the humanoid needs starts here."
+      "why": "THE spine of the whole plan. Screw-theory kinematics → dynamics → trajectory generation → control → wheeled robots. Free PDF + full video lecture series + Coursera exercises. Everything the humanoid needs starts here.",
+      "owned": true
     },
     {
       "title": "A Tour of C++ (3rd ed)",
@@ -20,7 +21,8 @@
       "free": null,
       "chaptersTotal": 19,
       "chaptersRead": 0,
-      "why": "You know Python; robotics runs on C++ (ROS 2, PX4, firmware). 250 pages, written by the language's author, respects your time. Read alongside the Udemy C++ course."
+      "why": "You know Python; robotics runs on C++ (ROS 2, PX4, firmware). 250 pages, written by the language's author, respects your time. Read alongside the Udemy C++ course.",
+      "owned": false
     },
     {
       "title": "Practical Electronics for Inventors (4th ed)",
@@ -31,7 +33,8 @@
       "free": null,
       "chaptersTotal": 17,
       "chaptersRead": 0,
-      "why": "Your EE/electronics gap-filler: circuit theory, transistors, op-amps, power supplies, motors, MCUs — written for people who build, not for exams. The bench reference for every wiring decision on both robots."
+      "why": "Your EE/electronics gap-filler: circuit theory, transistors, op-amps, power supplies, motors, MCUs — written for people who build, not for exams. The bench reference for every wiring decision on both robots.",
+      "owned": false
     },
     {
       "title": "Feedback Systems: An Introduction (2nd ed)",
@@ -42,7 +45,8 @@
       "free": "https://fbswiki.org/wiki/index.php/Feedback_Systems:_An_Introduction_for_Scientists_and_Engineers",
       "chaptersTotal": 15,
       "chaptersRead": 0,
-      "why": "Free, modern, state-space-first control theory. Sharpens the M.Tech controls you already have into the form drone attitude loops and humanoid balance controllers actually use."
+      "why": "Free, modern, state-space-first control theory. Sharpens the M.Tech controls you already have into the form drone attitude loops and humanoid balance controllers actually use.",
+      "owned": true
     },
     {
       "title": "Making Embedded Systems (2nd ed)",
@@ -53,7 +57,8 @@
       "free": null,
       "chaptersTotal": 14,
       "chaptersRead": 0,
-      "why": "How real firmware is architected: drivers, interrupts, state machines, debugging without a debugger. Bridges the Arduino-toy level to the STM32/flight-controller level."
+      "why": "How real firmware is architected: drivers, interrupts, state machines, debugging without a debugger. Bridges the Arduino-toy level to the STM32/flight-controller level.",
+      "owned": false
     },
     {
       "title": "Probabilistic Robotics",
@@ -64,7 +69,8 @@
       "free": null,
       "chaptersTotal": 17,
       "chaptersRead": 0,
-      "why": "State estimation is what separates robots that work from robots that demo. Bayes filters, Kalman/EKF, particle filters, SLAM. The drone's EKF and any localization you ever do come from here."
+      "why": "State estimation is what separates robots that work from robots that demo. Bayes filters, Kalman/EKF, particle filters, SLAM. The drone's EKF and any localization you ever do come from here.",
+      "owned": false
     },
     {
       "title": "Small Unmanned Aircraft: Theory and Practice",
@@ -75,7 +81,8 @@
       "free": "https://github.com/randybeard/mavsim_public",
       "chaptersTotal": 14,
       "chaptersRead": 0,
-      "why": "The drone bible: aircraft dynamics, autopilot design layer by layer, state estimation, path following. The companion 'mavsim' Python repo lets you build the whole autopilot yourself before touching PX4 internals."
+      "why": "The drone bible: aircraft dynamics, autopilot design layer by layer, state estimation, path following. The companion 'mavsim' Python repo lets you build the whole autopilot yourself before touching PX4 internals.",
+      "owned": true
     },
     {
       "title": "Hands-On Machine Learning (3rd ed)",
@@ -86,7 +93,8 @@
       "free": null,
       "chaptersTotal": 19,
       "chaptersRead": 0,
-      "why": "The fastest respectable route to deep-learning fluency: end-to-end projects, CNNs, training tricks, deployment. You've used YOLO as a tool; this makes you the person who trains it."
+      "why": "The fastest respectable route to deep-learning fluency: end-to-end projects, CNNs, training tricks, deployment. You've used YOLO as a tool; this makes you the person who trains it.",
+      "owned": false
     },
     {
       "title": "Reinforcement Learning: An Introduction (2nd ed)",
@@ -97,7 +105,8 @@
       "free": "http://incompleteideas.net/book/the-book-2nd.html",
       "chaptersTotal": 17,
       "chaptersRead": 0,
-      "why": "Free, canonical RL. Part 1 (ch. 1–8) is mandatory before training any locomotion policy — otherwise PPO is a black box you can't debug when the humanoid learns to fall creatively."
+      "why": "Free, canonical RL. Part 1 (ch. 1–8) is mandatory before training any locomotion policy — otherwise PPO is a black box you can't debug when the humanoid learns to fall creatively.",
+      "owned": true
     },
     {
       "title": "Underactuated Robotics",
@@ -108,7 +117,8 @@
       "free": "https://underactuated.mit.edu",
       "chaptersTotal": 24,
       "chaptersRead": 0,
-      "why": "Free MIT course-book on dynamic locomotion: walking models, trajectory optimization, RL for control. This is the humanoid track's graduate school. Videos + runnable notebooks included."
+      "why": "Free MIT course-book on dynamic locomotion: walking models, trajectory optimization, RL for control. This is the humanoid track's graduate school. Videos + runnable notebooks included.",
+      "owned": true
     },
     {
       "title": "The Art of Electronics (3rd ed)",
@@ -119,7 +129,8 @@
       "free": null,
       "chaptersTotal": 15,
       "chaptersRead": 0,
-      "why": "Not a cover-to-cover read — the reference you consult when Scherz & Monk isn't deep enough. Buy used/later."
+      "why": "Not a cover-to-cover read — the reference you consult when Scherz & Monk isn't deep enough. Buy used/later.",
+      "owned": false
     },
     {
       "title": "Deep Learning",
@@ -130,7 +141,8 @@
       "free": "https://www.deeplearningbook.org",
       "chaptersTotal": 20,
       "chaptersRead": 0,
-      "why": "Free theory reference for when Géron says 'it works' and you want to know why."
+      "why": "Free theory reference for when Géron says 'it works' and you want to know why.",
+      "owned": true
     },
     {
       "title": "Introduction to Autonomous Mobile Robots (2nd ed)",
@@ -141,7 +153,8 @@
       "free": null,
       "chaptersTotal": 6,
       "chaptersRead": 0,
-      "why": "Optional breadth: locomotion, perception, SLAM, planning for mobile robots. Skim if the drone perception work pulls you toward SLAM."
+      "why": "Optional breadth: locomotion, perception, SLAM, planning for mobile robots. Skim if the drone perception work pulls you toward SLAM.",
+      "owned": false
     }
   ]
 }

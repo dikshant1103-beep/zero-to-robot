@@ -9,3 +9,4 @@ out/
 .agents/
 .claude/
 skills-lock.json
+books/local/

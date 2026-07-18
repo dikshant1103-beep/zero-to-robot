@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS books (
   free_url text,
   chapters_total int NOT NULL DEFAULT 1,
   chapters_read int NOT NULL DEFAULT 0,
+  owned boolean NOT NULL DEFAULT false,
   why text NOT NULL DEFAULT ''
 );
 CREATE INDEX IF NOT EXISTS books_user ON books(user_id);
