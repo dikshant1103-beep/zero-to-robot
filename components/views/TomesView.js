@@ -1,10 +1,52 @@
 "use client";
 import { useState, useTransition } from "react";
 import { Bar, AreaChip, Window } from "@/components/ui";
+import Link from "next/link";
 import { AREA_COLORS } from "@/lib/meta";
+import { bookSlug, librarySource } from "@/lib/library";
 import { setChaptersRead, addBook, updateBook, deleteBook } from "@/lib/actions";
 
 const AREAS = Object.keys(AREA_COLORS);
+
+// READ/DOWNLOAD for tomes the authors publish free; buy/borrow for the rest.
+function BookLinks({ b }) {
+  const src = librarySource(b.title);
+  if (!src) {
+    return b.free ? (
+      <a className="sys-btn ghost tiny" href={b.free} target="_blank" rel="noreferrer">
+        SOURCE ↗
+      </a>
+    ) : null;
+  }
+  if (src.url) {
+    return (
+      <>
+        <Link className="sys-btn tiny" href={`/read/${bookSlug(b.title)}`}>
+          READ
+        </Link>
+        <a
+          className="sys-btn ghost tiny"
+          href={src.url}
+          target="_blank"
+          rel="noreferrer"
+          {...(src.kind === "pdf" ? { download: true } : {})}
+        >
+          {src.kind === "pdf" ? "DOWNLOAD" : "OPEN ↗"}
+        </a>
+      </>
+    );
+  }
+  return (
+    <>
+      <a className="sys-btn ghost tiny" href={src.buy} target="_blank" rel="noreferrer">
+        BUY ↗
+      </a>
+      <a className="sys-btn ghost tiny" href={src.borrow} target="_blank" rel="noreferrer">
+        BORROW ↗
+      </a>
+    </>
+  );
+}
 
 function BookFields({ f, set }) {
   return (
@@ -111,6 +153,9 @@ function BookRow({ b, editable }) {
         <div className="sub">
           {b.authors} · Gate {b.phase}
           {b.free ? " · FREE DROP" : ""} · +30 XP per chapter
+        </div>
+        <div className="book-links">
+          <BookLinks b={b} />
         </div>
       </div>
       <div className="meta">
